@@ -11,18 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#242424"
-        android:gravity="center">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include_title"
+            layout="@layout/layout_public_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <com.example.a55300.animationdemo.widget.ProgressRing
             android:id="@+id/pring"
             android:layout_width="320dp"
             android:layout_height="320dp"
+            android:layout_marginTop="@dimen/dp_10"
             app:pr_bg_end_color="#00ffffff"
             app:pr_bg_mid_color="#33ffffff"
             app:pr_bg_start_color="#00ffffff"
             app:pr_progress_end_color="#66ccff"
             app:pr_progress_start_color="#00ffffff"
-            app:pr_progress_width="10dp"/>
+            app:pr_progress_width="10dp" />
 
     </LinearLayout>
 
