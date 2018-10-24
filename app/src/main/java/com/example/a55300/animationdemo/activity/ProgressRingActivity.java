@@ -22,10 +22,10 @@ public class ProgressRingActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.progress_ring);
 
         initView();
         initListener();
-        binding.includeTitle.tvTitle.setText(title);
     }
 
     private void initView() {
@@ -33,9 +33,7 @@ public class ProgressRingActivity extends AppCompatActivity{
         if (intent != null) {
             title = getIntent().getStringExtra("title");
         }
-
-        binding = DataBindingUtil.setContentView(this, R.layout.progress_ring);
-
+        binding.includeTitle.tvTitle.setText(title);
         binding.pring.setProgress(100);
     }
 
