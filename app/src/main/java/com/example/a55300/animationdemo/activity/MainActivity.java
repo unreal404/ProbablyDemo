@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
 
     private List<TypeBean> getData(){
         typeBeanList.add(new TypeBean("自定义圆环进度条", 1));
-        typeBeanList.add(new TypeBean("占个地的", 1));
+        typeBeanList.add(new TypeBean("随便改的", 1));
         typeBeanList.add(new TypeBean("占个地的", 1));
         typeBeanList.add(new TypeBean("占个地的", 1));
 
