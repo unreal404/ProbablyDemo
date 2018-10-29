@@ -1,0 +1,2 @@
+com.allen.rxhttputilslibrary
+string app_name

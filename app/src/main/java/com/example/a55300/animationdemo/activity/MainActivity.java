@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
     }
 
     private List<TypeBean> getData(){
-        typeBeanList.add(new TypeBean("自定义圆环进度条", 1));
-        typeBeanList.add(new TypeBean("随便改的", 1));
-        typeBeanList.add(new TypeBean("占个地的", 1));
-        typeBeanList.add(new TypeBean("占个地的", 1));
+        typeBeanList.add(new TypeBean("自定义圆环进度条", 0));
+        typeBeanList.add(new TypeBean("RxJava + Retrofit请求天气（已封装）", 1));
+        typeBeanList.add(new TypeBean("占个地的", 2));
+        typeBeanList.add(new TypeBean("占个地的", 2));
 
         return typeBeanList;
     }
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         switch (typeBeanList.get(position).getType()) {
-            case 1: toNextTopic(ProgressRingActivity.class,typeBeanList.get(position).getTitle()); break;
+            case 0: toNextTopic(ProgressRingActivity.class,typeBeanList.get(position).getTitle()); break;
+            case 1: toNextTopic(WeatherActivity.class,typeBeanList.get(position).getTitle()); break;
             default:
         }
     }
