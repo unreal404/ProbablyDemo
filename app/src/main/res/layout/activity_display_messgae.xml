@@ -6,15 +6,51 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/messgae"
+        <include
+            android:id="@+id/include_title"
+            layout="@layout/layout_public_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_9"
-            android:textSize="@dimen/sp_16"/>
+            android:layout_marginTop="@dimen/dp_100"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/tv_location"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="@dimen/dp_25"
+                android:background="@drawable/shape_corner_stroke"
+                android:hint="@string/tips_location"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_9"/>
+
+            <TextView
+                android:id="@+id/tv_messgae"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="@color/color_9"
+                android:textSize="@dimen/sp_16"/>
+
+            <Button
+                android:id="@+id/btn_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/search"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_f"
+                android:background="@drawable/shape_corner_colorchange_red"
+                android:visibility="gone"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </layout>
