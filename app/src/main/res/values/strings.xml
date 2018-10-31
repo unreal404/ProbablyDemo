@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AnimationDemo</string>
 
-    <string name="tips_location">请输入想要查询的城市</string>
+    <string name="tips_location">请输入想要查询的城市&#8230;</string>
     <string name="search">搜索</string>
     <string name="fail_search">搜索失败，请重试</string>
 </resources>

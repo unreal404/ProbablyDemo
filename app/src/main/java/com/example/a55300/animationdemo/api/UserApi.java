@@ -14,6 +14,7 @@ public interface UserApi {
     @GET("getshowpiclist")
     Observable<List<PicBean>> getPic();
 
+    //和风天气 http://www.heweather.com/
     @GET("https://free-api.heweather.com/s6/weather/forecast?key=9a1789da1d5a403086ea811f289a9a8e")
     Observable<HeWeatherBean> getWeather(@Query("location") String location);
 }
