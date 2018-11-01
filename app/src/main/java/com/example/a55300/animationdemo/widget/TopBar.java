@@ -40,8 +40,8 @@ public class TopBar extends RelativeLayout  {
     private TopBarBtnsOnClickListener listener;
 
     public interface TopBarBtnsOnClickListener{
-        public void leftBtnOnClick();//左按钮被点击的事件
-        public void rightBtnOnClick();//右按钮被点击的事件
+        public void leftBtnOnClick();
+        public void rightBtnOnClick();
     }
 
     public void setOnTopBarBtnsClick(TopBarBtnsOnClickListener listener){
