@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.support.annotation.IntRange;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -25,6 +26,8 @@ public class ProgressRing extends View {
     private int startAngle;
     private int sweepAngle;
     private boolean showAnim;
+    private float textSize;
+    private int textColor;
 
     private int mMeasureHeight;
     private int mMeasureWidth;
@@ -33,6 +36,7 @@ public class ProgressRing extends View {
 
     private Paint bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
     private Paint progressPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+    private Paint textPaint = new Paint();
 
     private float unitAngle;
 
@@ -41,17 +45,26 @@ public class ProgressRing extends View {
     public ProgressRing(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
+
+
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ProgressRing);
         progressStartColor = ta.getColor(R.styleable.ProgressRing_pr_progress_start_color, Color.YELLOW);
         progressEndColor = ta.getColor(R.styleable.ProgressRing_pr_progress_end_color, progressStartColor);
+
         bgStartColor = ta.getColor(R.styleable.ProgressRing_pr_bg_start_color, Color.LTGRAY);
         bgMidColor = ta.getColor(R.styleable.ProgressRing_pr_bg_mid_color, bgStartColor);
         bgEndColor = ta.getColor(R.styleable.ProgressRing_pr_bg_end_color, bgStartColor);
+
         progress = ta.getInt(R.styleable.ProgressRing_pr_progress, 0);
         progressWidth = ta.getDimension(R.styleable.ProgressRing_pr_progress_width, 8f);
-        startAngle = ta.getInt(R.styleable.ProgressRing_pr_start_angle, 0);
-        sweepAngle = ta.getInt(R.styleable.ProgressRing_pr_sweep_angle, 360);
+
+        startAngle = ta.getInt(R.styleable.ProgressRing_pr_start_angle, 120);
+        sweepAngle = ta.getInt(R.styleable.ProgressRing_pr_sweep_angle, 290);
         showAnim = ta.getBoolean(R.styleable.ProgressRing_pr_show_anim, true);
+
+        textSize = ta.getDimension(R.styleable.ProgressRing_textSize, 8f);
+        textColor = ta.getInt(R.styleable.ProgressRing_textColor, R.color.color_66ccff);
+
         ta.recycle();
 
         unitAngle = (float)(sweepAngle / 100.0);
@@ -63,6 +76,11 @@ public class ProgressRing extends View {
         progressPaint.setStyle(Paint.Style.STROKE);
         progressPaint.setStrokeCap(Paint.Cap.ROUND);
         progressPaint.setStrokeWidth(progressWidth);
+
+        textPaint.setStrokeWidth(progressWidth);
+        textPaint.setTextSize(textSize);
+        textPaint.setColor(textColor);
+
     }
 
     @Override
@@ -91,6 +109,7 @@ public class ProgressRing extends View {
 
         drawBg(canvas);
         drawProgress(canvas);
+        displayProgress(canvas);
 
 //        if (curProgress == 100) curProgress = 0;
 
@@ -98,6 +117,17 @@ public class ProgressRing extends View {
             curProgress++;
             postInvalidate();
         }
+    }
+
+    private void displayProgress(Canvas canvas) {
+        Paint.FontMetrics fm = textPaint.getFontMetrics();
+        int textHeight = (int) Math.ceil(fm.descent - fm.ascent);
+        int mXCentre = getWidth() / 2;
+        int mYCentre = getHeight() / 2;
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        int percent = (int)(((float)curProgress / 100.0) * 100);
+        float textWidth = textPaint.measureText(percent + "%");
+        canvas.drawText(percent + "%", mXCentre - textWidth / 2, mYCentre + textHeight / 2, textPaint);
     }
 
     public int getGradient(float fraction, int startColor, int endColor) {

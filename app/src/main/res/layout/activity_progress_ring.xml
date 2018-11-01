@@ -30,7 +30,9 @@
             app:pr_bg_start_color="#00ffffff"
             app:pr_progress_end_color="#66ccff"
             app:pr_progress_start_color="#00ffffff"
-            app:pr_progress_width="10dp" />
+            app:pr_progress_width="10dp"
+            app:textColor="@color/color_66ccff"
+            app:textSize="18sp"/>
 
 
     </LinearLayout>
