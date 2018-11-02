@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
         typeBeanList.add(new TypeBean("自定义圆环进度条", 0));
         typeBeanList.add(new TypeBean("RxJava + Retrofit请求天气（已封装）", 1));
         typeBeanList.add(new TypeBean("自定义TopBar", 2));
-        typeBeanList.add(new TypeBean("占个地的", 3));
+        typeBeanList.add(new TypeBean("自定义RandomRect", 3));
 
         return typeBeanList;
     }
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
             case 0: toNextTopic(ProgressRingActivity.class,typeBeanList.get(position).getTitle()); break;
             case 1: toNextTopic(WeatherActivity.class,typeBeanList.get(position).getTitle()); break;
             case 2: toNextTopic(TopbarViewActivity.class,typeBeanList.get(position).getTitle()); break;
+            case 3: toNextTopic(RandomRectAcitivy.class,typeBeanList.get(position).getTitle()); break;
             default:
         }
     }

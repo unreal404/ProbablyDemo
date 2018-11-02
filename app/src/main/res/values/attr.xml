@@ -40,4 +40,5 @@
         <attr name="rightBackground" format="reference|color" />
         <attr name="rightTextColor" format="color" />
     </declare-styleable>
+
 </resources>
