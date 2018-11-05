@@ -27,7 +27,7 @@
         <activity android:name=".activity.ProgressRingActivity"/>
         <activity android:name=".activity.WeatherActivity"/>
         <activity android:name=".activity.TopbarViewActivity"/>
-        <activity android:name=".activity.RandomRectAcitivy"/>
+        <activity android:name=".activity.RandomRectActiviy"/>
 
     </application>
 

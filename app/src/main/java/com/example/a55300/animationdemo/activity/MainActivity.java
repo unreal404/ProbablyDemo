@@ -1,6 +1,5 @@
 package com.example.a55300.animationdemo.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
             case 0: toNextTopic(ProgressRingActivity.class,typeBeanList.get(position).getTitle()); break;
             case 1: toNextTopic(WeatherActivity.class,typeBeanList.get(position).getTitle()); break;
             case 2: toNextTopic(TopbarViewActivity.class,typeBeanList.get(position).getTitle()); break;
-            case 3: toNextTopic(RandomRectAcitivy.class,typeBeanList.get(position).getTitle()); break;
+            case 3: toNextTopic(RandomRectActiviy.class,typeBeanList.get(position).getTitle()); break;
             default:
         }
     }
