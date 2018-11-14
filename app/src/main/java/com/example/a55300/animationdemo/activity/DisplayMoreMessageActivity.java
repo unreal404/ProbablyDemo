@@ -48,7 +48,7 @@ public class DisplayMoreMessageActivity extends AppCompatActivity {
                 "领导干部进行党的十九大精神集中轮训，要求每位省管领导干\n" +
                 "部都要参加一次集中轮训，确保党的十九大精神学......";
 
-        limitStringTo140(str, binding.tvMessgae, null);
+        limitStringTo140(str, binding.tvMessgae, null, 70);
     }
 
     private void initListener() {
@@ -69,19 +69,19 @@ public class DisplayMoreMessageActivity extends AppCompatActivity {
         else return -1;//not exceed the max line
     }
 
-    public static void limitStringTo140(String summerize, final TextView textView, final View.OnClickListener clickListener) {
+    public static void limitStringTo140(String summerize, final TextView textView, final View.OnClickListener clickListener, int maxleng) {
         final long startTime = System.currentTimeMillis();
         if (textView == null) return;
         int width = textView.getWidth();//在recyclerView和ListView中，由于复用的原因，这个TextView可能以前就画好了，能获得宽度
         if (width == 0) width = 1000;//获取textview的实际宽度，这里可以用各种方式（一般是dp转px写死）填入TextView的宽度
         int lastCharIndex = getLastCharIndexForLimitTextView(textView, summerize, width, 10);
-        if (lastCharIndex < 0 && summerize.length() <= 100) {//如果行数没超过限制
+        if (lastCharIndex < 0 && summerize.length() <= maxleng) {//如果行数没超过限制
             textView.setText(summerize);
             return;
         }
         //如果超出了行数限制
         textView.setMovementMethod(LinkMovementMethod.getInstance());//this will deprive the recyclerView's focus
-        if (lastCharIndex > 100 || lastCharIndex < 0) lastCharIndex = 100;
+        if (lastCharIndex > maxleng || lastCharIndex < 0) lastCharIndex = maxleng;
         String explicitText = null;
         if (summerize.charAt(lastCharIndex) == '\n') {//manual enter
             explicitText = summerize.substring(0, lastCharIndex);
@@ -109,7 +109,7 @@ public class DisplayMoreMessageActivity extends AppCompatActivity {
             public void onClick(View widget) {
                 textView.setText(mSpan);
             }
-        },finalSummerize.length() - 4, finalSummerize.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        },summerize.length(), finalSummerize.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         mSpan.setSpan(new ClickableSpan() {
             @Override
