@@ -8,10 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.a55300.animationdemo.R;
+import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityProgressRingBinding;
 
 
-public class ProgressRingActivity extends AppCompatActivity{
+public class ProgressRingActivity extends BaseActivity {
 
     private ActivityProgressRingBinding binding;
     private String title;
@@ -20,14 +21,15 @@ public class ProgressRingActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_progress_ring);
-
+        initStatusBar(getResources().getColor(R.color.color_F));
+        setStatusBarMode(this, 1);
 
         initView();
         initData();
         initListener();
     }
 
-    private void initView() {
+    public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
             title = getIntent().getStringExtra("title");
@@ -36,7 +38,7 @@ public class ProgressRingActivity extends AppCompatActivity{
         binding.pring.setProgress(100);
     }
 
-    private void initListener() {
+    public void initListener() {
         binding.includeTitle.llTitleLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +47,7 @@ public class ProgressRingActivity extends AppCompatActivity{
         });
     }
 
-    private void initData() {
+    public void initData() {
 
     }
 

@@ -10,6 +10,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.a55300.animationdemo.R;
 import com.example.a55300.animationdemo.adapter.MainAdapter;
+import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.bean.TypeBean;
 import com.example.a55300.animationdemo.databinding.ActivityMainBinding;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.OnItemClickListener{
+public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener{
 
     private MainAdapter adapter;
     private ActivityMainBinding binding;
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements BaseQuickAdapter.
         adapter.setOnItemClickListener(this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void initListener() {
+
     }
 
     private List<TypeBean> getData(){

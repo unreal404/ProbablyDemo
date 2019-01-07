@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.a55300.animationdemo">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -15,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".api.App"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -24,11 +26,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ProgressRingActivity"/>
-        <activity android:name=".activity.WeatherActivity"/>
-        <activity android:name=".activity.TopbarViewActivity"/>
-        <activity android:name=".activity.RandomRectActiviy"/>
-        <activity android:name=".activity.DisplayMoreMessageActivity"/>
+        <activity android:name=".activity.ProgressRingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
+        <activity android:name=".activity.WeatherActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
+        <activity android:name=".activity.TopbarViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
+        <activity android:name=".activity.RandomRectActiviy"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
+        <activity android:name=".activity.DisplayMoreMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
 
     </application>
 

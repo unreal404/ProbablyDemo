@@ -12,10 +12,11 @@ import android.view.View;
 import com.allen.library.observer.CommonObserver;
 import com.example.a55300.animationdemo.R;
 import com.example.a55300.animationdemo.api.RequestUtil;
+import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.bean.HeWeatherBean;
 import com.example.a55300.animationdemo.databinding.ActivityDisplayMessgaeBinding;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends BaseActivity {
 
     private ActivityDisplayMessgaeBinding binding;
     private String title;
@@ -25,12 +26,15 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_display_messgae);
+        initStatusBar(getResources().getColor(R.color.color_F));
+        setStatusBarMode(this, 1);
 
         initView();
+        initData();
         initListener();
     }
 
-    private void initView() {
+    public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
             title = getIntent().getStringExtra("title");
@@ -38,11 +42,11 @@ public class WeatherActivity extends AppCompatActivity {
         binding.includeTitle.tvTitle.setText(title);
     }
 
-    private  void initData() {
+    public   void initData() {
 
     }
 
-    private void initListener(){
+    public void initListener(){
         binding.includeTitle.llTitleLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

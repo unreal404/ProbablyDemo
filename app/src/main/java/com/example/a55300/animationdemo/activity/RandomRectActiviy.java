@@ -8,9 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.a55300.animationdemo.R;
+import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityRandomRectBinding;
 
-public class RandomRectActiviy extends AppCompatActivity {
+public class RandomRectActiviy extends BaseActivity {
 
     private ActivityRandomRectBinding binding;
     private String title;
@@ -19,12 +20,14 @@ public class RandomRectActiviy extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_random_rect);
+        initStatusBar(getResources().getColor(R.color.color_F));
+        setStatusBarMode(this, 1);
 
         initView();
         initListener();
     }
 
-    private void initView() {
+    public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
             title = getIntent().getStringExtra("title");
@@ -35,7 +38,12 @@ public class RandomRectActiviy extends AppCompatActivity {
         binding.randomRect.setOffset(0);
     }
 
-    private void initListener() {
+    @Override
+    public void initData() {
+
+    }
+
+    public void initListener() {
         binding.includeTitle.llTitleLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

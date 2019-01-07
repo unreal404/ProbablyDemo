@@ -18,9 +18,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.a55300.animationdemo.R;
+import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityDisplayMoreMessageBinding;
 
-public class DisplayMoreMessageActivity extends AppCompatActivity {
+public class DisplayMoreMessageActivity extends BaseActivity {
 
     private ActivityDisplayMoreMessageBinding binding;
     private String str;
@@ -30,12 +31,14 @@ public class DisplayMoreMessageActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_display_more_message);
+        initStatusBar(getResources().getColor(R.color.color_F));
+        setStatusBarMode(this, 1);
 
         initView();
         initListener();
     }
 
-    private void initView() {
+    public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
             title = getIntent().getStringExtra("title");
@@ -51,7 +54,12 @@ public class DisplayMoreMessageActivity extends AppCompatActivity {
         limitStringTo140(str, binding.tvMessgae, null, 70);
     }
 
-    private void initListener() {
+    @Override
+    public void initData() {
+
+    }
+
+    public void initListener() {
         binding.includeTitle.llTitleLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

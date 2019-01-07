@@ -46,7 +46,7 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:text="@string/search"
                 android:textSize="@dimen/sp_16"
-                android:textColor="@color/color_f"
+                android:textColor="@color/color_F"
                 android:background="@drawable/shape_corner_colorchange_red"
                 android:visibility="gone"/>
 
