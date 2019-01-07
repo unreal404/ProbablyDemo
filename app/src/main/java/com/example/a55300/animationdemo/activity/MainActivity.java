@@ -54,6 +54,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         typeBeanList.add(new TypeBean("自定义TopBar", 2));
         typeBeanList.add(new TypeBean("自定义RandomRect", 3));
         typeBeanList.add(new TypeBean("display more message", 4));
+        typeBeanList.add(new TypeBean("文件管理器", 5));
 
         return typeBeanList;
     }
@@ -66,6 +67,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             case 2: toNextTopic(TopbarViewActivity.class,typeBeanList.get(position).getTitle()); break;
             case 3: toNextTopic(RandomRectActiviy.class,typeBeanList.get(position).getTitle()); break;
             case 4: toNextTopic(DisplayMoreMessageActivity.class,typeBeanList.get(position).getTitle()); break;
+            case 5: toNextTopic(FileAdminActivity.class,typeBeanList.get(position).getTitle()); break;
             default:
         }
     }

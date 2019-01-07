@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".api.App"
+        android:name=".base.App"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
@@ -39,6 +39,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme"/>
         <activity android:name=".activity.DisplayMoreMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
+        <activity android:name=".activity.FileAdminActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme"/>
 
