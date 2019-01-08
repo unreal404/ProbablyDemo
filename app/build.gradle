@@ -1,14 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.a55300.animationdemo"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi-v7a' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -17,14 +23,21 @@ android {
         }
     }
     dataBinding {
-        enabled = true
+        enabled true
+    }
+
+    repositories {
+        flatDir {
+            dirs '../app/libs'
+        }
     }
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -33,8 +46,12 @@ dependencies {
      * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
      */
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     api 'com.github.lygttpod:RxHttpUtils:2.1.7'
-
+    implementation files('libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar')
+    //运行时权限
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.2'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
 }
