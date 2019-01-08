@@ -59,10 +59,17 @@ public class FileAdminActivity extends BaseActivity {
             }
 
             @Override
-            public void didSelectFiles(DirectoryFragment activity,
-                                       ArrayList<String> files) {
-                mDirectoryFragment.showErrorBox(files.get(0).toString());
-//                Toast.makeText(MainActivity.this, files.get(0).toString(), Toast.LENGTH_LONG).show();
+            public void didSelectFiles(DirectoryFragment activity, ArrayList<String> files) {
+
+                int i = files.get(0).toString().lastIndexOf("/");
+                String name = files.get(0).toString().substring(i + 1, files.get(0).toString().length());
+                Intent intent = new Intent(FileAdminActivity.this, DisplayFileActivity.class);
+                intent.putExtra("type", 2);
+                intent.putExtra("url", files.get(0).toString());
+                intent.putExtra("title", name);
+                startActivity(intent);
+
+//                mDirectoryFragment.showErrorBox(files.get(0).toString());
             }
 
             @Override

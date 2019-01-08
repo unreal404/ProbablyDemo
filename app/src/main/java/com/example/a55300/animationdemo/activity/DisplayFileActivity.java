@@ -41,6 +41,7 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 	private String fileName = "";
 	private String url = "http://xtzx01-1255000116.cos-zwy.xuetangx.com/zwy/img/tmp/省委办省府办经济责任审计办法97d2dd116ee222055d31c589db6919ce.docx";
 	private String title = "";
+	private int type = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +66,15 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 		if (intent != null) {
 			url = intent.getStringExtra("url");
 			title = intent.getStringExtra("title");
+			type = intent.getIntExtra("type", 1);
 		}
 
 		binding.includeTitle.tvTitle.setText(title);
-		downLoadFile(url);
+		if (type == 1) {
+			downLoadFile(url);
+		} else {
+			displayFile(url, title);
+		}
 	}
 
 	@Override
