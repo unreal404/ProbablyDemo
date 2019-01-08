@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     private List<TypeBean> typeBeanList = new ArrayList<>();
 
     private String url = "http://xtzx01-1255000116.cos-zwy.xuetangx.com/zwy/img/tmp/省委办省府办经济责任审计办法97d2dd116ee222055d31c589db6919ce.docx";
+    private String url_zip = "http://xtzx01-1255000116.cos-zwy.xuetangx.com/zwy/img/tmp/省委办省府办经济责任审计办法97d2dd116ee222055d31c589db6919ce.docx";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         typeBeanList.add(new TypeBean("display more message", 4));
         typeBeanList.add(new TypeBean("文件管理器", 5));
         typeBeanList.add(new TypeBean("TBS display file", 6));
+        typeBeanList.add(new TypeBean("display zip", 7));
 
         return typeBeanList;
     }
@@ -82,6 +84,8 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 intent.putExtra("url", url);
                 intent.putExtra("title", typeBeanList.get(position).getTitle());
                 startActivity(intent);
+                break;
+            case 7:
                 break;
             default:
         }
