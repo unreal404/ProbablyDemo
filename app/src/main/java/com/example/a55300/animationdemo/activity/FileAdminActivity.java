@@ -12,6 +12,7 @@ import com.example.a55300.animationdemo.R;
 import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityFileAdminBinding;
 import com.example.a55300.animationdemo.fragment.DirectoryFragment;
+import com.example.a55300.animationdemo.util.ConstantUtil;
 
 import java.util.ArrayList;
 
@@ -40,8 +41,8 @@ public class FileAdminActivity extends BaseActivity {
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            title = getIntent().getStringExtra("title");
-            extStorage = getIntent().getStringExtra("extStorage");
+            title = getIntent().getStringExtra(ConstantUtil.RESOURCE_TITLE);
+            extStorage = getIntent().getStringExtra(ConstantUtil.RESOURCE_EXTSTORAGE);
         }
         binding.includeTitle.tvTitle.setText(title);
     }
@@ -80,9 +81,9 @@ public class FileAdminActivity extends BaseActivity {
         int i = files.get(0).toString().lastIndexOf("/");
         String name = files.get(0).toString().substring(i + 1, files.get(0).toString().length());
         Intent intent = new Intent(FileAdminActivity.this, DisplayFileActivity.class);
-        intent.putExtra("type", 2);
-        intent.putExtra("url", files.get(0).toString());
-        intent.putExtra("title", name);
+        intent.putExtra(ConstantUtil.RESOURCE_TYPE, 2);
+        intent.putExtra(ConstantUtil.RESOURCE_URL, files.get(0).toString());
+        intent.putExtra(ConstantUtil.RESOURCE_TITLE, name);
         startActivity(intent);
     }
 

@@ -14,6 +14,7 @@ import com.example.a55300.animationdemo.adapter.MainAdapter;
 import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.bean.TypeBean;
 import com.example.a55300.animationdemo.databinding.ActivityMainBinding;
+import com.example.a55300.animationdemo.util.ConstantUtil;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.ValueCallback;
 
@@ -81,8 +82,8 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             case 5: toNextTopic(FileAdminActivity.class,typeBeanList.get(position).getTitle()); break;
             case 6:
                 Intent intent = new Intent(MainActivity.this, DisplayFileActivity.class);
-                intent.putExtra("url", url);
-                intent.putExtra("title", typeBeanList.get(position).getTitle());
+                intent.putExtra(ConstantUtil.RESOURCE_URL, url);
+                intent.putExtra(ConstantUtil.RESOURCE_TITLE, typeBeanList.get(position).getTitle());
                 startActivity(intent);
                 break;
             case 7:
@@ -95,7 +96,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     private void toNextTopic(Class<?> cls, String title) {
         if (title != null) {
             Intent intent = new Intent(MainActivity.this, cls);
-            intent.putExtra("title", title);
+            intent.putExtra(ConstantUtil.RESOURCE_TITLE, title);
             startActivity(intent);
         }
     }

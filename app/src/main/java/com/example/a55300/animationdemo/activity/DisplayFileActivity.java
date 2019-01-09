@@ -16,6 +16,7 @@ import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityDisplayfileBinding;
 import com.example.a55300.animationdemo.listener.DownloadUtils;
 import com.example.a55300.animationdemo.listener.JsDownloadListener;
+import com.example.a55300.animationdemo.util.ConstantUtil;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsReaderView;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -64,9 +65,9 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 	public void initData() {
 		Intent intent = getIntent();
 		if (intent != null) {
-			url = intent.getStringExtra("url");
-			title = intent.getStringExtra("title");
-			type = intent.getIntExtra("type", 1);
+			url = intent.getStringExtra(ConstantUtil.RESOURCE_URL);
+			title = intent.getStringExtra(ConstantUtil.RESOURCE_TITLE);
+			type = intent.getIntExtra(ConstantUtil.RESOURCE_TYPE, 1);
 		}
 
 		binding.includeTitle.tvTitle.setText(title);

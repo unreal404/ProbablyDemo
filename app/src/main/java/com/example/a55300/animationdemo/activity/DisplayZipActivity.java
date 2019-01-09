@@ -14,6 +14,7 @@ import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityProgressRingBinding;
 import com.example.a55300.animationdemo.listener.DownloadUtils;
 import com.example.a55300.animationdemo.listener.JsDownloadListener;
+import com.example.a55300.animationdemo.util.ConstantUtil;
 import com.example.a55300.animationdemo.util.ZipUtils;
 
 import java.io.File;
@@ -154,8 +155,8 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
                 file.mkdir();
                 ZipUtils.UnZipFolder(url_zip, filePath_zip + fileName_zip);
                 Intent intent = new Intent(DisplayZipActivity.this, FileAdminActivity.class);
-                intent.putExtra("extStorage", filePath_zip + fileName_zip);
-                intent.putExtra("title", fileName_zip);
+                intent.putExtra(ConstantUtil.RESOURCE_EXTSTORAGE, filePath_zip + fileName_zip);
+                intent.putExtra(ConstantUtil.RESOURCE_TITLE, fileName_zip);
                 startActivity(intent);
                 finish();
             } catch (Exception e){
@@ -164,8 +165,8 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
             }
         } else {
             Intent intent = new Intent(DisplayZipActivity.this, FileAdminActivity.class);
-            intent.putExtra("extStorage", filePath_zip + fileName_zip);
-            intent.putExtra("title", fileName_zip);
+            intent.putExtra(ConstantUtil.RESOURCE_EXTSTORAGE, filePath_zip + fileName_zip);
+            intent.putExtra(ConstantUtil.RESOURCE_TITLE, fileName_zip);
             startActivity(intent);
             finish();
         }
