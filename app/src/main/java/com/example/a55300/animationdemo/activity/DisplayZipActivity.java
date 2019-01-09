@@ -148,17 +148,25 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
         String filePath_zip = Environment.getExternalStorageDirectory().getAbsolutePath() + "/animation/word";
         int i = url_zip.lastIndexOf("/");
         String fileName_zip = url_zip.substring(i, url_zip.length() - 4);
-        try {
-            File file = new File(filePath_zip + fileName_zip);
-            file.mkdir();
-            ZipUtils.UnZipFolder(url_zip, filePath_zip + fileName_zip);
+        if (!DownloadUtils.fileIsExists(filePath_zip + fileName_zip)) {
+            try {
+                File file = new File(filePath_zip + fileName_zip);
+                file.mkdir();
+                ZipUtils.UnZipFolder(url_zip, filePath_zip + fileName_zip);
+                Intent intent = new Intent(DisplayZipActivity.this, FileAdminActivity.class);
+                intent.putExtra("extStorage", filePath_zip + fileName_zip);
+                intent.putExtra("title", fileName_zip);
+                startActivity(intent);
+                finish();
+            } catch (Exception e){
+                Toast.makeText(DisplayZipActivity.this, e+"", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        } else {
             Intent intent = new Intent(DisplayZipActivity.this, FileAdminActivity.class);
             intent.putExtra("extStorage", filePath_zip + fileName_zip);
             intent.putExtra("title", fileName_zip);
             startActivity(intent);
-            finish();
-        } catch (Exception e){
-            Toast.makeText(DisplayZipActivity.this, e+"", Toast.LENGTH_LONG).show();
             finish();
         }
     }
