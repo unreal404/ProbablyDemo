@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -32,7 +33,8 @@ public class ZipUtils {
      * @throws Exception
      */
     public static void UnZipFolder(String zipFileString, String outPathString) throws Exception {
-        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
+        Charset gbk = Charset.forName("GBK");
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString), gbk);
         ZipEntry zipEntry;
         String  szName = "";
         while ((zipEntry = inZip.getNextEntry()) != null) {

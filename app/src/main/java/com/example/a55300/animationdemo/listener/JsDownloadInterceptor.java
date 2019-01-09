@@ -3,6 +3,7 @@ package com.example.a55300.animationdemo.listener;
 import java.io.IOException;
 
 import okhttp3.Interceptor;
+import okhttp3.Request;
 import okhttp3.Response;
 
 /**
@@ -23,7 +24,10 @@ public class JsDownloadInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        Response response = chain.proceed(chain.request());
+//        解决压缩文件下载问题
+        Request.Builder builder = chain.request().newBuilder().addHeader("Accept-Encoding", "identity");
+        Response response = chain.proceed(builder.build());
+//        Response response = chain.proceed(chain.request());
         return response.newBuilder().body(
                 new JsResponseBody(response.body(), downloadListener)).build();
     }
