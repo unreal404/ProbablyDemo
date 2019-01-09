@@ -86,6 +86,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 startActivity(intent);
                 break;
             case 7:
+                toNextTopic(DisplayZipActivity.class, typeBeanList.get(position).getTitle());
                 break;
             default:
         }

@@ -48,6 +48,9 @@
         <activity android:name=".activity.DisplayFileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme"/>
+        <activity android:name=".activity.DisplayZipActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppNoActionBarTheme"/>
 
     </application>
 

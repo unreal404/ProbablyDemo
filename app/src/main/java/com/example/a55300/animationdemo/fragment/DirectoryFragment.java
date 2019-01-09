@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.StateSet;
 import android.view.LayoutInflater;
@@ -558,7 +559,9 @@ public class DirectoryFragment extends Fragment {
     }
 
     public void setExtStorage(String extStorage) {
-        this.extStorage = extStorage;
+        if (!TextUtils.isEmpty(extStorage)) {
+            this.extStorage = extStorage;
+        }
     }
 
     private boolean isexistence(String file) {

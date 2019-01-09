@@ -22,6 +22,7 @@ public class FileAdminActivity extends BaseActivity {
     private FragmentManager fragmentManager = null;
     private FragmentTransaction fragmentTransaction = null;
     private DirectoryFragment mDirectoryFragment;
+    private String extStorage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class FileAdminActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null) {
             title = getIntent().getStringExtra("title");
+            extStorage = getIntent().getStringExtra("extStorage");
         }
         binding.includeTitle.tvTitle.setText(title);
     }
@@ -50,7 +52,7 @@ public class FileAdminActivity extends BaseActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
 
         mDirectoryFragment = new DirectoryFragment();
-//        mDirectoryFragment.setExtStorage("/storage/emulated/0/zj");
+        mDirectoryFragment.setExtStorage(extStorage);
         mDirectoryFragment.setDelegate(new DirectoryFragment.DocumentSelectActivityDelegate() {
 
             @Override
