@@ -2,20 +2,17 @@ package com.example.a55300.animationdemo.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.Toast;
 
-import com.example.a55300.animationdemo.R;
 import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityProgressRingBinding;
 import com.example.a55300.animationdemo.listener.DownloadUtils;
 import com.example.a55300.animationdemo.listener.JsDownloadListener;
 import com.example.a55300.animationdemo.util.ConstantUtil;
-import com.example.a55300.animationdemo.util.ZipUtils;
+import com.example.a55300.animationdemo.util.UnFileUtils;
 
 import java.io.File;
 
@@ -153,7 +150,7 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
             try {
                 File file = new File(filePath_zip + fileName_zip);
                 file.mkdir();
-                ZipUtils.UnZipFolder(url_zip, filePath_zip + fileName_zip);
+                UnFileUtils.UnZipFolder(url_zip, filePath_zip + fileName_zip);
                 Intent intent = new Intent(DisplayZipActivity.this, FileAdminActivity.class);
                 intent.putExtra(ConstantUtil.RESOURCE_EXTSTORAGE, filePath_zip + fileName_zip);
                 intent.putExtra(ConstantUtil.RESOURCE_TITLE, fileName_zip);
