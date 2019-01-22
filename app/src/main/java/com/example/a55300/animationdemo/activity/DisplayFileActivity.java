@@ -1,8 +1,10 @@
 package com.example.a55300.animationdemo.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.example.a55300.animationdemo.databinding.ActivityDisplayfileBinding;
 import com.example.a55300.animationdemo.listener.DownloadUtils;
 import com.example.a55300.animationdemo.listener.JsDownloadListener;
 import com.example.a55300.animationdemo.util.ConstantUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsReaderView;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -27,6 +30,7 @@ import java.util.HashMap;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by HaiyuKing
@@ -43,6 +47,7 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 	private String url = "http://xtzx01-1255000116.cos-zwy.xuetangx.com/zwy/img/tmp/省委办省府办经济责任审计办法97d2dd116ee222055d31c589db6919ce.docx";
 	private String title = "";
 	private int type = 1;
+	private RxPermissions mRxPermissions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 		binding = DataBindingUtil.setContentView(this, R.layout.activity_displayfile);
 		initStatusBar(getResources().getColor(R.color.color_F));
 		setStatusBarMode(this, 1);
+		mRxPermissions = new RxPermissions(this);
 
 		initView();
 		initData();
@@ -71,11 +77,7 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 		}
 
 		binding.includeTitle.tvTitle.setText(title);
-		if (type == 1) {
-			downLoadFile(url);
-		} else {
-			displayFile(url, title);
-		}
+		addPermissions();
 	}
 
 	@Override
@@ -200,6 +202,35 @@ public class DisplayFileActivity extends BaseActivity implements JsDownloadListe
 
 		return file;
 
+	}
+
+	private void addPermissions() {
+		if (mRxPermissions.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+			if (type == 1) {
+				downLoadFile(url);
+			} else {
+				displayFile(url, title);
+			}
+		} else {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				mRxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+					@Override
+					public void accept(Boolean aBoolean) throws Exception {
+						if (aBoolean) {
+							if (type == 1) {
+								downLoadFile(url);
+							} else {
+								displayFile(url, title);
+							}
+						} else {
+							showMsg(DisplayFileActivity.this, "未授权权限，功能不能使用");
+							finish();
+						}
+					}
+				});
+			}
+
+		}
 	}
 
 	private void openOtherFile(String path) {

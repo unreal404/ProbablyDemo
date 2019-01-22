@@ -1,23 +1,28 @@
 package com.example.a55300.animationdemo.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.example.a55300.animationdemo.R;
 import com.example.a55300.animationdemo.base.BaseActivity;
 import com.example.a55300.animationdemo.databinding.ActivityProgressRingBinding;
 import com.example.a55300.animationdemo.listener.DownloadUtils;
 import com.example.a55300.animationdemo.listener.JsDownloadListener;
 import com.example.a55300.animationdemo.util.ConstantUtil;
 import com.example.a55300.animationdemo.util.UnFileUtils;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class DisplayZipActivity extends BaseActivity implements JsDownloadListener {
 
@@ -27,12 +32,15 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
     private String title;
     private String fileName = "";
     private String filePath = "";
+    private RxPermissions mRxPermissions;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_progress_ring);
-
+        initStatusBar(getResources().getColor(R.color.color_F));
+        setStatusBarMode(this, 1);
+        mRxPermissions = new RxPermissions(this);
         initView();
         initData();
         initListener();
@@ -50,7 +58,7 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
     @Override
     public void initData() {
 //        unZip(url_zip);
-        downLoadFile(url);
+        addPermissions();
     }
 
     @Override
@@ -156,8 +164,8 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
                 intent.putExtra(ConstantUtil.RESOURCE_TITLE, fileName_zip);
                 startActivity(intent);
                 finish();
-            } catch (Exception e){
-                Toast.makeText(DisplayZipActivity.this, e+"", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Toast.makeText(DisplayZipActivity.this, e + "", Toast.LENGTH_LONG).show();
                 finish();
             }
         } else {
@@ -168,4 +176,26 @@ public class DisplayZipActivity extends BaseActivity implements JsDownloadListen
             finish();
         }
     }
+
+    private void addPermissions() {
+        if (mRxPermissions.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            downLoadFile(url);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mRxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean) {
+                            downLoadFile(url);
+                        } else {
+                            showMsg(DisplayZipActivity.this, "未授权权限，功能不能使用");
+                            finish();
+                        }
+                    }
+                });
+            }
+
+        }
+    }
+
 }
