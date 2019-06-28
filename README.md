@@ -5,7 +5,7 @@
 
 1.自定义圆环进度条
 
-2.RxJava + Retrofit请求天气（以封装）
+2.RxJava + Retrofit请求天气（封装）
 
 3.自定义TopBar
 
