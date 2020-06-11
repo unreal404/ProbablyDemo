@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.a55300.animationdemo.widget.TopBar
+        <com.animationdemo.widget.TopBar
             android:id="@+id/topbar"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -31,7 +31,7 @@
             app:rightBackground = "@android:color/holo_blue_bright"
             app:rightTextColor = "#FFFFFF">
 
-        </com.example.a55300.animationdemo.widget.TopBar>
+        </com.animationdemo.widget.TopBar>
 
 
     </LinearLayout>

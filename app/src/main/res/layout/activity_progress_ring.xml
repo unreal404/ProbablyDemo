@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.a55300.animationdemo.widget.ProgressRing
+        <com.animationdemo.widget.ProgressRing
             android:id="@+id/pring"
             android:layout_width="320dp"
             android:layout_height="320dp"

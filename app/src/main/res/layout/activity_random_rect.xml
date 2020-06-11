@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.a55300.animationdemo.widget.RandomRect
+        <com.animationdemo.widget.RandomRect
             android:id="@+id/randomRect"
             android:layout_width="match_parent"
             android:layout_height="320dp"
