@@ -41,4 +41,11 @@
         <attr name="rightTextColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TouchProgressView">
+        <attr name="selectMode">
+            <enum name="middle" value="0" />
+            <enum name="left" value="1" />
+        </attr>
+    </declare-styleable>
+
 </resources>

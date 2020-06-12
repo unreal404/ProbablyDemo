@@ -67,6 +67,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         typeBeanList.add(new TypeBean("文件管理器", 5));
         typeBeanList.add(new TypeBean("TBS display file", 6));
         typeBeanList.add(new TypeBean("display zip", 7));
+        typeBeanList.add(new TypeBean("视频图片混播轮播图", 8));
 
         return typeBeanList;
     }
@@ -89,6 +90,8 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             case 7:
                 toNextTopic(DisplayZipActivity.class, typeBeanList.get(position).getTitle());
                 break;
+            case 8:
+                toNextTopic(BannerActivity.class, typeBeanList.get(position).getTitle());
             default:
         }
     }

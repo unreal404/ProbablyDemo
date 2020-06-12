@@ -7,6 +7,7 @@ import android.util.Log;
 import com.allen.library.RxHttpUtils;
 import com.allen.library.config.OkHttpConfig;
 import com.allen.library.cookie.store.SPCookieStore;
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.tencent.smtt.sdk.QbSdk;
 
 import java.lang.reflect.Constructor;
@@ -20,6 +21,7 @@ import okhttp3.OkHttpClient;
 public class App extends Application {
     Map<String, Object> headerMaps = new HashMap<>();
     public static volatile Context applicationContext = null;
+    private HttpProxyCacheServer proxy;
 
     @Override
     public void onCreate() {
@@ -108,5 +110,14 @@ public class App extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private HttpProxyCacheServer newProxy() {
+        return new HttpProxyCacheServer(this);
+    }
+
+    public static HttpProxyCacheServer getProxy(Context context) {
+        App app = (App) context.getApplicationContext();
+        return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
     }
 }
